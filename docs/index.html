@@ -126,6 +126,23 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 .then(function(){console.log("PERSOK")})
 .catch(function(e){console.log("PERSERR",e)})
 
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    // ...
+  } else {
+    // User is signed out.
+    // ...
+  }
+});
+
 	var signtw = function() {
 		var provider = new firebase.auth.TwitterAuthProvider();
 		firebase.auth().signInWithPopup(provider).then(function(result) {
