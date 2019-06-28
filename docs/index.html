@@ -126,6 +126,8 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 .then(function(){console.log("PERSOK")})
 .catch(function(e){console.log("PERSERR",e)})
 
+var loggedin = null;
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -137,6 +139,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var uid = user.uid;
     var providerData = user.providerData;
     console.log("USER",user)
+    loggedin = user;
     // ...
   } else {
   	console.log("NOUSER")
@@ -154,7 +157,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		  var secret = result.credential.secret;
 		  // The signed-in user info.
 		  var user = result.user;
-		  console.log(user)
+		  //console.log(user)
 		  // ...
 		}).catch(function(error) {
 		  // Handle Errors here.
@@ -178,7 +181,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		  var secret = result.credential.secret;
 		  // The signed-in user info.
 		  var user = result.user;
-		  console.log(user)
+		  //console.log(user)
 		  // ...
 		}).catch(function(error) {
 		  // Handle Errors here.
