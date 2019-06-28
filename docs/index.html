@@ -140,6 +140,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     var providerData = user.providerData;
     console.log("USER",user)
     loggedin = user;
+    firebase.database().ref('users/' + uid).set({
+    username: displayName,
+    email: email,
+    profile_picture : photoURL
+  });
     // ...
   } else {
   	console.log("NOUSER")
