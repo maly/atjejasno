@@ -124,8 +124,8 @@
 
 
 	
-	var signtw = function() {
-		var provider = new firebase.auth.TwitterAuthProvider();
+	var signfb = function() {
+		var provider = new firebase.auth.FacebookAuthProvider();
 		firebase.auth().signInWithPopup(provider).then(function(result) {
 		  // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
 		  // You can use these server side with your app's credentials to access the Twitter API.
@@ -149,6 +149,7 @@
 	}		
 	</script>
 
-	<button click="signtw">TW SGN 2</button>
+	<button onclick="signtw">TW SGN 2</button>
+	<button onclick="signfb">FB SGN 2</button>
 </body>
 </html>
