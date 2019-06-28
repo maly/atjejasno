@@ -122,6 +122,10 @@
 
 		console.log(atoc(a))
 
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+.then(function(){console.log("PERSOK")})
+.catch(function(e){console.log("PERSERR",e)})
+
 	var signtw = function() {
 		var provider = new firebase.auth.TwitterAuthProvider();
 		firebase.auth().signInWithPopup(provider).then(function(result) {
