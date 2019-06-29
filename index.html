@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+      integrity="sha256-BtbhCIbtfeVWGsqxk1vOHEYXS6qcvQvLMZqjtpWUEx8="
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="./litera.css" rel="stylesheet" />
+    <link href="./ajj.css" rel="stylesheet" />
+    <script>
+      var questions = [
+        {
+          one: "Izrael",
+          two: "Palestina"
+        },
+        {
+          one: "Prchal",
+          two: "Klusák"
+        },
+        {
+          one: "Sparta",
+          two: "Slavia"
+        },
+        {
+          one: "Očkovat",
+          two: "Neočkovat"
+        },
+        {
+          one: "Praha",
+          two: "Brno"
+        }
+      ];
+    </script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-database.js"></script>
+
+    <script src="index.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+	 https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="./favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="./favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="./favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon/favicon-16x16.png"
+    />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="./favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <script>
+      var a = [0, 1, 2, 3, 2, 1, 1, 2, 3, 0, 1, 2, 0, 1, 3];
+
+      var encode = ["-", "*"];
+
+      for (var i = 0; i < 26; i++) {
+        encode.push(String.fromCharCode(i + 65));
+        encode.push(String.fromCharCode(i + 97));
+      }
+      for (var i = 0; i < 10; i++) {
+        encode.push(String.fromCharCode(i + 48));
+      }
+
+      var atoc = function(a) {
+        var out = "";
+        var p = 0;
+        var q;
+        //console.log(a.length)
+        while (a.length - p + 1 > 3) {
+          q = a[p] + 4 * a[p + 1] + 16 * a[p + 2];
+          p += 3;
+          out += encode[q];
+        }
+        q = 0;
+        //console.log(a.length,p)
+        if (a.length > p) {
+          q = a[p];
+        }
+        if (a.length > p + 1) {
+          q = q + a[p] * 4;
+        }
+        if (a.length > p) {
+          out += encode[q];
+        }
+        //console.log(q)
+        return out;
+      };
+
+      var ctoa = function(c) {
+        var out = [];
+        for (var i = 0; i < c.length; i++) {
+          var n = encode.indexOf(c.substr(i, 1));
+          //console.log(n,c.substr(i,1))
+          out.push(n % 4);
+          n = Math.floor(n / 4);
+          out.push(n % 4);
+          n = Math.floor(n / 4);
+          out.push(n % 4);
+        }
+        return out;
+      };
+
+      var quest = function(bold) {
+        for (var i = 0; i < questions.length; i++) {
+          var q = questions[i];
+          var a = bold[i];
+          if (a === 0) continue;
+
+          console.log(q.one + ", nebo " + q.two + "?", a == 1 ? q.one : q.two);
+        }
+      };
+
+      //--------
+
+      var par = window.location.search;
+
+      if (par.indexOf("?mix=") === 0) {
+        var bold = ctoa(par.substr(5));
+        quest(bold);
+      }
+
+      console.log(atoc(a));
+    </script>
+
+    <nav class="navbar navbar-expand-sm  mb-3">
+      <div class="container">
+        <a class="navbar-brand" href="/"><i class="fas fa-gavel"></i></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!--
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+		  </ul>
+		-->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                id="nouser"
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#" id="profil" class="dropdown-item">Profil</a>
+                <a href="#logout" class="dropdown-item">Odhlásit</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="payload">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Ať je jasno!</h1>
+          <p class="lead">
+            Jednoznačné odpovědi na složité a nejednoznačné otázky
+          </p>
+          <hr class="my-4" />
+          <p>
+            Znáte ty otázky, u kterých si vždycky řeknete něco jako: &bdquo;To
+            není tak jednoduché&ldquo;, nebo třeba &bdquo;záleží na situaci,
+            kontextu a spoustě dalších věcí&ldquo;, nebo dokonce &bdquo;tady
+            nelze vybrat jednu jednou variantu&ldquo;?
+          </p>
+          <p>
+            <strong>Tak to tady neříkejte!</strong>
+          </p>
+          <p>
+            Tady se rozhodněte pro jednu variantu. Co je vám sympatičtější?
+            Třeba v otázce &bdquo;Praha, nebo Brno&ldquo; nemáte jasnou odpověď,
+            protože na takovou otázku odpovídáte třeba &bdquo;Plzeň&ldquo; nebo
+            &bdquo;Ostrava !!!&ldquo;, nebo dokonce &bdquo;Dycky Most!&ldquo; -
+            ale s touhle chytristikou tady nepochodíte. Tady prostě vyberte - i
+            když k těm možnostem nemáte pořádný vztah ani k jedné. To je jedno.
+            Vyberte!
+          </p>
+          <p>
+            <strong>Nemudrujte a vyberte!</strong>
+          </p>
+          <a class="btn btn-primary btn-lg" id="signfb" href="#" role="button"
+            >Mám jasno! <i class="fab fa-facebook"></i
+          ></a>
+          <a class="btn btn-primary btn-lg" id="signtw" href="#" role="button"
+            >Mám jasno! <i class="fab fa-twitter"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

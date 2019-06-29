@@ -1,0 +1,29 @@
+{
+  "name": "atjejasno.cz",
+  "version": "1.0.0",
+  "description": "Ať je jasno",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html -d docs --public-url / --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maly/atjejasno.git"
+  },
+  "author": "Martin Maly <maly@maly.cz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maly/atjejasno/issues"
+  },
+  "homepage": "https://github.com/maly/atjejasno#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  }
+}
