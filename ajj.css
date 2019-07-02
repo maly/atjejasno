@@ -10,3 +10,10 @@
   font-size: 300%;
   color: red;
 }
+
+body.noauth .only-auth {
+  display: none;
+}
+body.auth .only-noauth {
+  display: none;
+}

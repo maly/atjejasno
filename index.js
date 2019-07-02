@@ -7,9 +7,13 @@ var manageUser = function(user) {
   console.log(user);
   if (user) {
     // photoURL
+    $("body").addClass("auth");
+    $("body").removeClass("noauth");
     $("#nouser").html("<img src=" + user.photoURL + ">");
     $("#profil").attr("href", "?" + user.alias);
   } else {
+    $("body").addClass("noauth");
+    $("body").removeClass("auth");
     $("#nouser").html('<i class="far fa-user-circle"></i>');
     $("#profil").attr("href", "#");
   }
@@ -20,8 +24,8 @@ $(document).ready(function() {
   fire.onUserChange(manageUser);
   fire.init();
 
-  $("#signfb").click(fire.signfb);
-  $("#signtw").click(fire.signtw);
+  $(".signfb").click(fire.signfb);
+  $(".signtw").click(fire.signtw);
 });
 
 window.onhashchange = function locationHashChanged(e) {

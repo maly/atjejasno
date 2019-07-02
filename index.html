@@ -239,8 +239,16 @@
                 id="nouser"
               ></a>
               <div class="dropdown-menu">
-                <a href="#" id="profil" class="dropdown-item">Profil</a>
-                <a href="#logout" class="dropdown-item">Odhlásit</a>
+                <a href="#" id="profil" class="dropdown-item only-auth"
+                  >Profil</a
+                >
+                <a href="#logout" class="dropdown-item only-auth">Odhlásit</a>
+                <a href="#" class="dropdown-item only-noauth signtw"
+                  >Přihlásit přes Twitter</a
+                >
+                <a href="#" class="dropdown-item only-noauth signfb"
+                  >Přihlásit přes Facebook</a
+                >
               </div>
             </li>
           </ul>
@@ -276,10 +284,10 @@
           <p>
             <strong>Nemudrujte a vyberte!</strong>
           </p>
-          <a class="btn btn-primary btn-lg" id="signfb" href="#" role="button"
+          <a class="btn btn-primary btn-lg signfb" href="#" role="button"
             >Mám jasno! <i class="fab fa-facebook"></i
           ></a>
-          <a class="btn btn-primary btn-lg" id="signtw" href="#" role="button"
+          <a class="btn btn-primary btn-lg signtw" href="#" role="button"
             >Mám jasno! <i class="fab fa-twitter"></i
           ></a>
         </div>
