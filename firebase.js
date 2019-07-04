@@ -145,6 +145,46 @@ var init = function() {
 
 var getUser = () => loggedin;
 
+var getUidByAlias = function(alias) {
+  return new Promise(function(resolve, reject) {
+    firebase
+      .database()
+      .ref("alias/" + alias)
+      .once("value")
+      .then(function(snap) {
+        snap = snap.val();
+        if (!snap) {
+          resolve(alias);
+          return;
+        }
+        //console.log("MALIAS", snap);
+        resolve(snap.uid);
+      });
+  });
+};
+
+var getUserInfo = function(uid) {
+  return new Promise(function(resolve, reject) {
+    firebase
+      .database()
+      .ref("users/" + uid)
+      .once("value")
+      .then(function(snap) {
+        snap = snap.val();
+        console.log("MSNAP", snap);
+        resolve(snap);
+      });
+  });
+};
+
 var onUserChange = cb => (userChangeCB = cb);
 
-module.exports = { signtw, signfb, init, getUser, onUserChange };
+module.exports = {
+  signtw,
+  signfb,
+  init,
+  getUser,
+  onUserChange,
+  getUserInfo,
+  getUidByAlias
+};

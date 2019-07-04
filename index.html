@@ -19,30 +19,6 @@
     />
     <link href="./litera.css" rel="stylesheet" />
     <link href="./ajj.css" rel="stylesheet" />
-    <script>
-      var questions = [
-        {
-          one: "Izrael",
-          two: "Palestina"
-        },
-        {
-          one: "Prchal",
-          two: "Klusák"
-        },
-        {
-          one: "Sparta",
-          two: "Slavia"
-        },
-        {
-          one: "Očkovat",
-          two: "Neočkovat"
-        },
-        {
-          one: "Praha",
-          two: "Brno"
-        }
-      ];
-    </script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
@@ -255,7 +231,22 @@
         </div>
       </div>
     </nav>
-    <div id="payload">
+    <section id="loader">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col align-self-center">
+            <div class="lds-ripple text-center">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="answers">
+      <div class="container"></div>
+    </section>
+    <div id="welcome" style="display:none">
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-4">Ať je jasno!</h1>
@@ -277,9 +268,9 @@
             Třeba v otázce &bdquo;Praha, nebo Brno&ldquo; nemáte jasnou odpověď,
             protože na takovou otázku odpovídáte třeba &bdquo;Plzeň&ldquo; nebo
             &bdquo;Ostrava !!!&ldquo;, nebo dokonce &bdquo;Dycky Most!&ldquo; -
-            ale s touhle chytristikou tady nepochodíte. Tady prostě vyberte - i
-            když k těm možnostem nemáte pořádný vztah ani k jedné. To je jedno.
-            Vyberte!
+            ale s touhle chytristikou tady nepochodíte. Tady prostě vyberte -
+            i&nbsp;když k těm možnostem nemáte pořádný vztah ani k jedné. To je
+            jedno. Vyberte!
           </p>
           <p>
             <strong>Nemudrujte a vyberte!</strong>
